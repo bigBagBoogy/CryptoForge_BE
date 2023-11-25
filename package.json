@@ -1,0 +1,25 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "This will be a server",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "in": "git init   git add .  git status",
+      "push": "git push -u origin main"
+    },
+    "author": "Maarten",
+    "license": "MIT",
+    "dependencies": {
+      "@erc725/erc725.js": "^0.14.2",
+      "@lukso/lsp-factory.js": "^2.3.3",
+      "@lukso/lsp-smart-contracts": "^0.6.1",
+      "dotenv": "^16.3.1",
+      "express": "^4.18.2",
+      "isomorphic-fetch": "^3.0.0",
+      "nedb": "^1.8.0",
+      "node-fetch": "^3.3.1",
+      "siwe": "^2.1.4",
+      "web3": "^4.1.1"
+    }
+  }
