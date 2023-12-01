@@ -8,8 +8,10 @@ const port = 3000;
 
 // Use cors middleware
 app.use(cors());
-
-app.get("/lesson/:lessonId", async (req, res) => {
+////////////
+// CODE  ///
+////////////
+app.get("/lessonCode/:lessonId", async (req, res) => {
   try {
     const lessonId = req.params.lessonId;
     console.log("lessonId", lessonId);
@@ -20,6 +22,25 @@ app.get("/lesson/:lessonId", async (req, res) => {
     console.log("solidityCode", solidityCode);
 
     res.json({ solidityCode });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+////////////
+// TEXT  ///
+////////////
+app.get("/lessonText/:lessonId", async (req, res) => {
+  try {
+    const lessonId = req.params.lessonId;
+    console.log("lessonId", lessonId);
+    // Read Markdown file
+    const markdownFilePath = `markdown_files/${lessonId}.md`;
+    console.log("markdownFilePath", markdownFilePath);
+    const markdownCode = await fs.readFile(markdownFilePath, "utf8");
+    console.log("markdownCode", markdownCode);
+
+    res.json({ markdownCode });
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
