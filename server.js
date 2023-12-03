@@ -33,16 +33,31 @@ app.get("/lessonCode/:lessonId", async (req, res) => {
 ////////////
 app.get("/lessonText/:lessonId", async (req, res) => {
   try {
-    console.log("got a request for lessonText");
+    // console.log("got a request for lessonText");
     const lessonId = req.params.lessonId;
-    console.log("lessonId", lessonId);
+    // console.log("lessonId", lessonId);
     // Read Markdown file
     const markdownFilePath = path.join("markdown_files", `${lessonId}.md`);
-    console.log("markdownFilePath", markdownFilePath);
+    // console.log("markdownFilePath", markdownFilePath);
     const markdownCode = await fs.readFile(markdownFilePath, "utf8");
-    console.log("markdownCode", markdownCode);
+    // console.log("markdownCode", markdownCode);
 
     res.json({ markdownCode });
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+///////////////
+// Answers  ///
+///////////////
+app.get("/lessonAnswers/:lessonId", async (req, res) => {
+  try {
+    const lessonId = req.params.lessonId;
+    console.log("got a request for lessonText, lessonId: ", lessonId);
+    const answerFilePath = path.join("Answer_files", `${lessonId}.sol`);
+    const answerCode = await fs.readFile(answerFilePath, "utf8");
+    res.json({ answerCode });
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
